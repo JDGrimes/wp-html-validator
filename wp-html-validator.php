@@ -36,14 +36,13 @@ function wp_html_validator_footer() {
 
 	?>
 
-	<div style="background-color: <?php echo esc_attr( $color ); ?>; text-align: left; display: block; clear: both; margin-left: auto; margin-right: auto; border: 1px dashed red; width: 70%; color: #000; padding: 10px;">
+	<div style="background-color: <?php echo esc_attr( $color ); ?>; text-align: left; display: block; clear: both; margin-left: auto; margin-right: auto; border: 1px dashed red; width: 70%; color: #000; padding: 10px; overflow: scroll;">
 		<?php if ( is_wp_error( $w3c ) ) : ?>
 			<?php echo esc_html( 'There was an error: ' . $w3c->get_error_message() ); ?>
 		<?php else : ?>
 			<?php $cached = ( $w3c['cached'] ) ? '(cached)' : '(not cached)'; ?>
 			<?php if ( $w3c['status'] !== 'valid' ) : ?>
 				<?php echo 'Not W3C valid! (<a href="http://validator.w3.org/#validate_by_input"> ' , (int) $w3c['error_count'] , ' errors</a>) ', $cached; ?>
-				<pre><?php echo esc_html( $w3c['errors'] ); ?></pre>
 			<?php else : ?>
 				<?php echo 'W3C Valid! ', $cached; ?>
 			<?php endif; ?>
@@ -54,6 +53,10 @@ function wp_html_validator_footer() {
 				<a href="http://codesymphony.co/">HTML Validator by J.D. Grimes</a>
 			</small>
 		</span>
+
+		<?php if ( ! is_wp_error( $w3c ) && $w3c['status'] !== 'valid' ) : ?>
+			<pre><?php echo esc_html( $w3c['errors'] ); ?></pre>
+		<?php endif ?>
 	</div>
 
 	<?php
