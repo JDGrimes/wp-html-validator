@@ -87,8 +87,8 @@ function wp_html_validator_check_url( $url ) {
 		$response = wp_remote_get(
 			add_query_arg( 'wp_html_validator', 1, $url )
 			, array(
-				'timeout'  => 10,
-				'coockies' => $_COOKIE,
+				'timeout' => 10,
+				'cookies' => $_COOKIE,
 			)
 		);
 
