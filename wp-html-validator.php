@@ -83,7 +83,7 @@ function wp_html_validator_check_url( $url ) {
 
 	$url_md5 = md5( $url );
 
-	$transient = get_transient( "wp_html_validator-{$url_md5}" );
+	$transient = get_transient( "html_validtr-{$url_md5}" );
 
 	if ( false === $transient ) {
 
@@ -130,7 +130,7 @@ function wp_html_validator_check_url( $url ) {
 			$expiration = WP_HTML_VALIDATOR_CACHE_EXPIRATION;
 		}
 
-		set_transient( "wp_html_validator-{$url_md5}", $result, $expiration );
+		set_transient( "html_validtr-{$url_md5}", $result, $expiration );
 
 		$result['cached'] = false;
 
