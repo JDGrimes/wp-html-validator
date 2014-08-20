@@ -54,7 +54,7 @@ function wp_html_validator_footer() {
 			</small>
 		</span>
 
-		<?php if ( ! is_wp_error( $w3c ) && $w3c['status'] !== 'valid' ) : ?>
+		<?php if ( ! is_wp_error( $w3c ) && isset( $w3c['errors'] ) ) : ?>
 			<pre><?php echo esc_html( $w3c['errors'] ); ?></pre>
 		<?php endif ?>
 	</div>
